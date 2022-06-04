@@ -44,6 +44,6 @@
             <Insets bottom="10.0" left="50.0" right="50.0" top="10.0" />
          </VBox.margin>
       </TableView>
-      <Button fx:id="Volver" mnemonicParsing="false" text="Volver" />
+      <Button fx:id="BtnVolver" mnemonicParsing="false" text="Volver" />
    </children>
 </VBox>
