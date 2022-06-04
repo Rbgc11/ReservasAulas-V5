@@ -30,7 +30,7 @@ public class ControladorBuscarAula {
 	
     @FXML private TableView<Aula> tabAulas;
     	@FXML private TableColumn<Aula, String> NombreAula;
-        @FXML private TableColumn<Aula, String> PuestosAula;
+        @FXML private TableColumn<Aula, String> PuestosAula; 
         
 
 
