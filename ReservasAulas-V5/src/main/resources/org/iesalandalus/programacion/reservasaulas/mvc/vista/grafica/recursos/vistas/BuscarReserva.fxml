@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="560.0" stylesheets="/estilos/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.controladores.ControladorVBuscarReserva">
+   <children>
+      <HBox alignment="CENTER" prefHeight="20.0" prefWidth="796.0">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="59.0" prefWidth="560.0">
+         <children>
+            <DatePicker fx:id="tfFecha" onAction="#acFecha" prefHeight="25.0" prefWidth="194.0">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </DatePicker>
+         </children>
+      </HBox>
+      <Button fx:id="btnBuscarRe" mnemonicParsing="false" onAction="#acBuscarReserva" prefHeight="31.0" prefWidth="151.0" text="Buscar Reserva">
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+      </Button>
+      <Label fx:id="lbError" textFill="#9f1515" underline="true">
+         <VBox.margin>
+            <Insets left="10.0" />
+         </VBox.margin>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tabReservas" cache="true" prefHeight="183.0" prefWidth="540.0">
+         <columns>
+            <TableColumn fx:id="ProfesorRe" prefWidth="178.0" text="Profesor" />
+            <TableColumn fx:id="AulaRe" minWidth="0.0" prefWidth="84.5" text="Aula" />
+            <TableColumn fx:id="PermanenciaRe" prefWidth="184.0" text="Permanencia" />
+            <TableColumn fx:id="PuntosRe" prefWidth="92.5" text="Puntos" />
+         </columns>
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+      </TableView>
+   </children>
+</VBox>

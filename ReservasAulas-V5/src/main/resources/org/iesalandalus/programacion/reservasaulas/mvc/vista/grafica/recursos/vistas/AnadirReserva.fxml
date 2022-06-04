@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="vAnadirProf" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="643.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladoresvista.ControladorAnadirProfesor">
+   <children>
+      <AnchorPane layoutX="9.0" layoutY="10.0">
+         <children>
+            <GridPane fx:id="NombreAula" alignment="CENTER" hgap="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="229.0" prefWidth="593.0" vgap="10.0">
+               <children>
+                  <Label fx:id="NombreProf" alignment="CENTER_RIGHT" disable="true" prefHeight="27.0" prefWidth="194.0" text="Nombre Profesor" textFill="#0026e4">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="PuestoAula" alignment="CENTER_RIGHT" disable="true" prefHeight="27.0" prefWidth="157.0" text="Puesto Aula" textFill="#0026e4" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="TelefonoProf" alignment="CENTER_RIGHT" disable="true" layoutX="10.0" layoutY="122.0" prefHeight="27.0" prefWidth="301.0" text="Teléfono Profesor" textAlignment="CENTER" textFill="#0026e4" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="CorreoProf" alignment="CENTER_RIGHT" disable="true" layoutX="10.0" layoutY="172.0" prefHeight="27.0" prefWidth="179.0" text="Email Profesor" textAlignment="JUSTIFY" textFill="#0026e4" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="tfNombreProf" disable="true" prefHeight="32.0" prefWidth="315.0" GridPane.columnIndex="1" />
+                  <TextField fx:id="tfTelefonoProf" disable="true" layoutX="310.0" layoutY="166.0" prefHeight="31.0" prefWidth="243.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="tfNombre" disable="true" prefHeight="31.0" prefWidth="322.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="lbEmail1" alignment="CENTER_RIGHT" disable="true" prefHeight="27.0" prefWidth="165.0" text="Nombre Aula" textFill="#0026e4" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="tfEmailProf" disable="true" layoutX="171.0" layoutY="90.0" prefHeight="31.0" prefWidth="243.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="tfPuestos" disable="true" layoutX="240.0" layoutY="21.0" prefHeight="32.0" prefWidth="315.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="279.0" minWidth="10.0" prefWidth="114.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="418.0" minWidth="10.0" prefWidth="257.0" />
+               </columnConstraints>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </children>
+      </AnchorPane>
+      <HBox alignment="CENTER_RIGHT" layoutX="52.0" layoutY="343.0" prefHeight="106.0" prefWidth="438.0" spacing="20.0">
+         <children>
+            <Button fx:id="btnAnadir" mnemonicParsing="false" onAction="#anadirClick" prefHeight="46.0" prefWidth="125.0" stylesheets="@../../../EjemplosJavaFx/CambioEscena/src/modelo/iugtablas.css" text="Añadir" />
+            <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cerrar" prefHeight="46.0" prefWidth="125.0" stylesheets="@../../../EjemplosJavaFx/CambioEscena/src/modelo/iugtablas.css" text="Cancelar" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+      <HBox layoutX="9.0" layoutY="248.0" prefHeight="100.0" prefWidth="643.0">
+         <children>
+            <VBox prefHeight="97.0" prefWidth="549.0">
+               <children>
+                  <HBox alignment="TOP_RIGHT" prefHeight="42.0" prefWidth="796.0" spacing="10.0">
+                     <children>
+                        <RadioButton fx:id="Horas" mnemonicParsing="false" onAction="#acPorHoras" prefHeight="25.0" prefWidth="105.0" text="Por horas">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </RadioButton>
+                        <ComboBox fx:id="inputHoras" disable="true" onAction="#acHora" prefWidth="150.0" promptText="Elgie una hora" visibleRowCount="5">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </ComboBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_RIGHT" prefHeight="42.0" prefWidth="796.0" spacing="10.0">
+                     <children>
+                        <DatePicker fx:id="Fecha" onAction="#acFecha" prefHeight="25.0" prefWidth="179.0">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </DatePicker>
+                        <RadioButton fx:id="Tramo" mnemonicParsing="false" onAction="#acPorTramo" prefHeight="25.0" prefWidth="106.0" text="Por tramo">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </RadioButton>
+                        <ComboBox fx:id="inputTramo" disable="true" onAction="#acTramo" prefWidth="150.0" promptText="Elgie un tramo" visibleRowCount="5">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </ComboBox>
+                     </children>
+                  </HBox>
+               </children>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
