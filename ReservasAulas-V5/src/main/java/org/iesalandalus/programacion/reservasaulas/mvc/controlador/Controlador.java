@@ -19,7 +19,7 @@ public class Controlador implements IControlador{
 	public Controlador(IModelo modelo, IVista vista) 
 	{
 		if (modelo == null) {
-			throw new NullPointerException(" El modelo no puede ser nulo.");
+			throw new NullPointerException("El modelo no puede ser nulo.");
 		}
 		
 		if (vista == null) {
