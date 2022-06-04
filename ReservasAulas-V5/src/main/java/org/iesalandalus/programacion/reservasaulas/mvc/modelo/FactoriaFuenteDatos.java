@@ -2,6 +2,7 @@
 
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.ficheros.FactoriaFuentesDatosFicheros;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.memoria.FactoriaFuentesDatosMemoria;
+import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.mongodb.FactoriaFuenteDatosMongodb;
 
 
 public enum FactoriaFuenteDatos {
@@ -15,6 +16,13 @@ public enum FactoriaFuenteDatos {
 		public IFuenteDatos crear() {
 			IFuenteDatos ficheros=new FactoriaFuentesDatosFicheros();
 			return ficheros;
+		}
+	}, 
+	
+	MONGODB {
+		public IFuenteDatos crear() {
+			IFuenteDatos mongodb=new FactoriaFuenteDatosMongodb();
+			return mongodb;
 		}
 	};
 	

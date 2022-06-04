@@ -1,9 +1,5 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.controladores;
 
-
-
-
-
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Month;
@@ -44,19 +40,16 @@ import javafx.scene.control.Tab;
 
 public class ControladorVentanaPrincipal {
 
-	// Instanciamos el controlador, que se pasará desde VistaGrafica mediante el setControladorMVC
 	private IControlador controladorMVC;
 	
 	public void setControladorMVC(IControlador controlador) {
 		controladorMVC=controlador;
 	}
 
-	// Creamos los ObservableList, que será lo que se vea en la tabla
 	private ObservableList<Profesor> profesores = FXCollections.observableArrayList();
 	private ObservableList<Aula> aulas = FXCollections.observableArrayList();
 	private ObservableList<Reserva> reservas = FXCollections.observableArrayList();
 
-	// Creamos las tablas con el tipo de objeto que contendrán, así como sus columnas, que contendrán Strings
 	@FXML private TableView<Profesor> tabProfesores;
 		@FXML private TableColumn<Profesor, String> NombreProf;
 		@FXML private TableColumn<Profesor, String> TelefonoProf;
@@ -71,7 +64,6 @@ public class ControladorVentanaPrincipal {
 		@FXML private TableColumn<Reserva, String> AulaReservas;
 		@FXML private TableColumn<Reserva, String> PermanenciaReservas;
 		
-	//Declaramos los distintos escenarios y sus controladores para luego utilizarlos en sus respectivas ventanas emergentes
 	private Stage anadirProfesor;
 	private ControladorAnadirProfesor cAnadirProf;
 	private Stage buscarProfesor;
@@ -85,8 +77,7 @@ public class ControladorVentanaPrincipal {
 	private Stage buscarReserva;
 	private ControladorBuscarReserva cBuscarReserva;
 	
-	//Inicializamos las tablas, indicando en setItems la ObservableList que contendrá y mediante funciones lambda los strings que irán
-	// a cada columna. 
+ 
 	@FXML private void initialize() {
 		tabProfesores.setItems(profesores);
 		NombreProf.setCellValueFactory(profesor -> new SimpleStringProperty(profesor.getValue().getNombre()));
@@ -104,22 +95,19 @@ public class ControladorVentanaPrincipal {
 		PermanenciaReservas.setCellValueFactory(reserva -> new SimpleStringProperty(reserva.getValue().getPermanencia().toString()));
 	}
     
-	//Método que actualiza las tablas, volcando el contenido de los getters en sus respectivas ObservableList. Inicialmente se corre
-	// desde la propia VistaGrafica y luego se irá corriendo en distintos métodos
+	
 	public void actualizaTablas() {
 		profesores.setAll(controladorMVC.getProfesores());
 		aulas.setAll(controladorMVC.getAulas());
 		reservas.setAll(controladorMVC.getReservas());
 	}
 	
-	// Métodos para borrar, que guardan el objeto seleccionado en su tipo correspondiente y luego comprueban que dicho objeto no sea null,
-	// y después pregunta mediante un diálogo si está seguro. Si se acepta, se pasa el objeto al controlador para que lo borre y se actualizan
-	// las tablas. Si no, no pasa nada. Captura mediante un try/catch cualquier error y lo muestra en forma de diálogo
+	
     @FXML void acEliminarAula(ActionEvent event) {
     	Aula aula=null;
     	try {
     		aula=tabAulas.getSelectionModel().getSelectedItem();
-    		if (aula!=null && Dialogos.mostrarDialogoConfirmacion("Borrar Aula", "¿Estás seguro de que quieres borrar el aula?", null)) {
+    		if (aula!=null && Dialogos.mostrarDialogoConfirmacion("Vas a Borrar el Aula", "¿Estás seguro de que quieres borrar el aula?", null)) {
     			controladorMVC.borrarAula(aula);
     			actualizaTablas();
     		}
@@ -131,7 +119,7 @@ public class ControladorVentanaPrincipal {
     	Profesor profesor=null;
     	try {
     		profesor=tabProfesores.getSelectionModel().getSelectedItem();
-    		if (profesor!=null && Dialogos.mostrarDialogoConfirmacion("Borrar Profesor", "¿Estás seguro de que quieres borrar el profesor?", null)) {
+    		if (profesor!=null && Dialogos.mostrarDialogoConfirmacion("Vas a Borrar al Profesor", "¿Estás seguro de que quieres borrar el profesor?", null)) {
     			controladorMVC.borrarProfesor(profesor);
     			actualizaTablas();
     		}
@@ -143,7 +131,7 @@ public class ControladorVentanaPrincipal {
     	Reserva reserva=null;
     	try {
     		reserva=tabReservas.getSelectionModel().getSelectedItem();
-    		if (reserva!=null && Dialogos.mostrarDialogoConfirmacion("Borrar Reserva", "¿Estás seguro de que quieres borrar la reserva?", null)) {
+    		if (reserva!=null && Dialogos.mostrarDialogoConfirmacion("Vas a Borrar la Reserva", "¿Estás seguro de que quieres borrar la reserva?", null)) {
     			controladorMVC.anularReserva(reserva);;
     			actualizaTablas();
     		}
@@ -152,8 +140,6 @@ public class ControladorVentanaPrincipal {
     	}
     }
 
-    // Métodos que abren otras ventanas. La acción corre el método correspondiente y muestra dicha ventana. El método crea un nuevo escenario,
-    // carga el FMXL, le pasa el controlador, le pone título, la hace unresizable y crea como aplicación modal. 
     @FXML
     void acAnadirAula(ActionEvent event) throws IOException {
     	acAnadirAula();
@@ -161,7 +147,7 @@ public class ControladorVentanaPrincipal {
     }
     private void acAnadirAula() throws IOException {
     	anadirAula = new Stage();
-		FXMLLoader cVentanaAnadirAula=new FXMLLoader(LocalizadorRecursos.class.getResource("/org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.recursos.vistas/AnadirAula.fxml"));
+		FXMLLoader cVentanaAnadirAula=new FXMLLoader(LocalizadorRecursos.class.getResource("org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.recursos.vistas/AnadirAula.fxml"));
 		TitledPane raizAnadirAula=cVentanaAnadirAula.load();
 		cAnadirAula=cVentanaAnadirAula.getController();
 		cAnadirAula.setControladorMVC(controladorMVC);
@@ -181,7 +167,7 @@ public class ControladorVentanaPrincipal {
     }
     private void acAnadirProf() throws IOException {
     	anadirProfesor = new Stage();
-		FXMLLoader cVentanaAnadirProf=new FXMLLoader(LocalizadorRecursos.class.getResource("/org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.recursos.vistas/AnadirProfesor.fxml"));
+		FXMLLoader cVentanaAnadirProf=new FXMLLoader(LocalizadorRecursos.class.getResource("org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.recursos.vistas/AnadirProfesor.fxml"));
 		TitledPane raizAnadirProf=cVentanaAnadirProf.load();
 		cAnadirProf=cVentanaAnadirProf.getController();
 		cAnadirProf.setControladorMVC(controladorMVC);
@@ -201,12 +187,11 @@ public class ControladorVentanaPrincipal {
     }
     private void acAnadirReserva() throws IOException {
     	anadirReserva = new Stage();
-		FXMLLoader cVentanaAnadirReserva=new FXMLLoader(LocalizadorRecursos.class.getResource("/org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.recursos.vistas/AnadirReserva.fxml"));
+		FXMLLoader cVentanaAnadirReserva=new FXMLLoader(LocalizadorRecursos.class.getResource("org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.recursos.vistas/AnadirReserva.fxml"));
 		VBox raizAnadirReserva=cVentanaAnadirReserva.load();
 		cAnadirReserva=cVentanaAnadirReserva.getController();
 		cAnadirReserva.setControladorMVC(controladorMVC);
 		cAnadirReserva.setControladorVPrincipal(this);
-		cAnadirReserva.actualizaTablasReserva();
 		
 		Scene escenaAnadirReserva=new Scene(raizAnadirReserva);
 		anadirReserva.setTitle("Añadir Reserva");
@@ -223,7 +208,7 @@ public class ControladorVentanaPrincipal {
     
     private void acBuscarAula() throws IOException {
     	buscarAula = new Stage();
-		FXMLLoader cVentanaBuscarAula=new FXMLLoader(LocalizadorRecursos.class.getResource("/org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.recursos.vistas/BuscarAula.fxml"));
+		FXMLLoader cVentanaBuscarAula=new FXMLLoader(LocalizadorRecursos.class.getResource("org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.recursos.vistas/BuscarAula.fxml"));
 		VBox raizBuscarAula=cVentanaBuscarAula.load();
 		cBuscarAula=cVentanaBuscarAula.getController();
 		cBuscarAula.setControladorMVC(controladorMVC);
@@ -244,7 +229,7 @@ public class ControladorVentanaPrincipal {
     
     private void acBuscarProf() throws IOException{
     	buscarProfesor=new Stage();
-		FXMLLoader cVentanaBuscarProf=new FXMLLoader(LocalizadorRecursos.class.getResource("/org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.recursos.vistas/BuscarProfesor.fxml"));
+		FXMLLoader cVentanaBuscarProf=new FXMLLoader(LocalizadorRecursos.class.getResource("org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.recursos.vistas/BuscarProfesor.fxml"));
 		VBox raizBuscarProf=cVentanaBuscarProf.load();
 		cBuscarProf=cVentanaBuscarProf.getController();
 		cBuscarProf.setControladorMVC(controladorMVC);
@@ -264,7 +249,7 @@ public class ControladorVentanaPrincipal {
     
     private void acBuscarReserva() throws IOException {
     	buscarReserva=new Stage();
-		FXMLLoader cVentanaBuscarReserva=new FXMLLoader(LocalizadorRecursos.class.getResource("/org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.recursos.vistas/BuscarReserva.fxml"));
+		FXMLLoader cVentanaBuscarReserva=new FXMLLoader(LocalizadorRecursos.class.getResource("org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.recursos.vistas/BuscarReserva.fxml"));
 		VBox raizBuscarReserva=cVentanaBuscarReserva.load();
 		cBuscarReserva=cVentanaBuscarReserva.getController();
 		cBuscarReserva.setControladorMVC(controladorMVC);
@@ -287,10 +272,5 @@ public class ControladorVentanaPrincipal {
     }
     
  
-    
-    @FXML
-    private MenuItem miAyuda;
-
-    @FXML
-    private MenuItem miSalir;
+  
 }

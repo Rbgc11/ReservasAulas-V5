@@ -8,6 +8,8 @@ repositories {
 }
 
 dependencies {
+
+    compile 'org.mongodb:mongodb-driver-sync:4.1.1'
 }
 
 javafx {

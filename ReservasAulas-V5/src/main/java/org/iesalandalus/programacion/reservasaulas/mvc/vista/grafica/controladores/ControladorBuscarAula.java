@@ -34,7 +34,7 @@ public class ControladorBuscarAula {
         
 
 
-    public void initialize() {
+    public void inicializa() {
 		tabAulas.setItems(aulas);
 		NombreAula.setCellValueFactory(aula -> new SimpleStringProperty(aula.getValue().getNombre()));
 		PuestosAula.setCellValueFactory(aula -> new SimpleStringProperty(String.valueOf(aula.getValue().getPuestos())));
@@ -42,7 +42,7 @@ public class ControladorBuscarAula {
     }
 
     @FXML
-    void acBuscarAula(ActionEvent event) {
+    void BuscarAula(ActionEvent event) {
     	aulas.clear();
     	lbError.setText("");
     	Aula aulaEncontrada=null;

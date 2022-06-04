@@ -42,7 +42,7 @@ public class ControladorBuscarProfesor {
         @FXML private TableColumn<Profesor, String> CorreoProf;
 
 
-        public void initialize() {
+        public void inicializa() {
     		tabProfesores.setItems(profesores);
     		NombreProf.setCellValueFactory(profesor -> new SimpleStringProperty(profesor.getValue().getNombre()));
     		TelefonoProf.setCellValueFactory(profesor -> new SimpleStringProperty(profesor.getValue().getTelefono()));
@@ -52,7 +52,6 @@ public class ControladorBuscarProfesor {
 
     @FXML void BuscarProf(ActionEvent event) {
     	profesores.clear();
-    	lbError.setText("");
     	Profesor profesorEncontrado=null;
     	try {
 	    	String correoProfesor=tfBuscarProf.getText();
@@ -63,14 +62,12 @@ public class ControladorBuscarProfesor {
     	}
     }
     
-    @FXML
-    private Label lbError;
+
     
     @FXML
     private Button btnBuscarProf;
     
-    @FXML
-    private TitledPane vBuscarProf;
+   
     
     @FXML
     private TextField tfBuscarProf;

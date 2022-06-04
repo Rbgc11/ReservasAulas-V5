@@ -47,7 +47,7 @@ public class ControladorBuscarReserva {
 	@FXML private TableColumn<Reserva, String> PermanenciaRe;
 	@FXML private TableColumn<Reserva, String> PuntosRe;
 	
-	@FXML private void initialize() {
+	@FXML private void inicializa() {
 		tabReservas.setItems(reservas);
 		ProfesorRe.setCellValueFactory(reserva -> new SimpleStringProperty(reserva.getValue().getProfesor().getNombre()));
 		AulaRe.setCellValueFactory(reserva -> new SimpleStringProperty(reserva.getValue().getAula().getNombre()));
@@ -60,24 +60,16 @@ public class ControladorBuscarReserva {
     void acBuscarReserva(ActionEvent event) {
     	List<Reserva> coleccionReservas=null;
     	try {
-    		lbError.setText("");
         	reservas.clear();
         	Tramo tramo=Tramo.MANANA;
         	Permanencia permanencia=new PermanenciaPorTramo(tfFecha.getValue(),tramo);
         	coleccionReservas=controladorMVC.getReservasPermanencia(permanencia);
-        	if (coleccionReservas==null) {
-        		lbError.setText("No existe ninguna reserva para ese dia");
-        	}
-        	else {
-        		reservas.setAll(coleccionReservas);
-        	}
+
     	}catch(Exception e) {
     		Dialogos.mostrarDialogoError("Error", e.getMessage());
     	}
     }
-    
-    @FXML
-    private Label lbError;
+
     
     @FXML
     private DatePicker tfFecha;

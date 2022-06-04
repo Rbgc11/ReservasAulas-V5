@@ -28,7 +28,7 @@ import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IReservas;
 
 public class Reservas implements IReservas{
 	// Atributos
-	private static final float MAX_PUNTOS_PROFESOR_MES = 200.0f;
+	private static final float MAX_PUNTOS_PROFESOR_MES = 200;
 	private List<Reserva> coleccionReservas;
 	private static final String NOMBRE_FICHEROS_RESERVAS = "datos/reservas.dat";
 

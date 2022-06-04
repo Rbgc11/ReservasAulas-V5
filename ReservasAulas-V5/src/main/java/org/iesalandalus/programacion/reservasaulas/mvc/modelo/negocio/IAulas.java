@@ -12,10 +12,10 @@ public interface IAulas {
 		//Método terminar
 		void terminar();
 
-		// Método List<Aula> getAulas(), coge una copia del método copiaProfunda 
+		// Método List<Aula> getAulas()
 		List<Aula> getAulas();
 
-		// Método getNumAulas, obtiene tamaño de la coleccion
+		// Método getNumAulas
 		int getNumAulas();
 
 		// Método insertar Aula
@@ -29,5 +29,6 @@ public interface IAulas {
 
 		// Metodo representar
 		List<String> representar();
+
 
 }

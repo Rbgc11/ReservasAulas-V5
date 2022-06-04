@@ -13,34 +13,39 @@ import javafx.stage.Stage;
 
 public class ControladorAnadirProfesor {
 	
+    @FXML private Button btnAceptar;
+    @FXML private Button btnCancelar;
+	
     @FXML private TextField tfNombreProf;
     @FXML private TextField tfApellidosProf;
     @FXML private TextField tfTelefonoProf;
     @FXML private TextField tfEmailProf;
 	ControladorVentanaPrincipal cVentanaPrincipal=null;
-	private IControlador controladorMVC;
+	private IControlador controlador;
+	
 	
 	public void setControladorVPrincipal(ControladorVentanaPrincipal controladorVPrincipal) {
 		cVentanaPrincipal=controladorVPrincipal;
 	}
 	
 	public void setControladorMVC(IControlador controlador) {
-		controladorMVC=controlador;
+		this.controlador = controlador;
 	}
 
-	public void initialize() {
-		tfNombreProf.textProperty().addListener((ob, ov, nv) -> compruebaNombre(ov, nv));
-		tfApellidosProf.textProperty().addListener((ob, ov, nv) -> compruebaApellido(ov, nv));
-		tfEmailProf.textProperty().addListener((ob, ov, nv) -> compruebaEMail(ov, nv));
-		tfTelefonoProf.textProperty().addListener((ob, ov, nv) -> compruebaTelefono(ov, nv));
+	public void inicializa() {
+		tfNombreProf.setText("");
+		tfApellidosProf.setText("");
+		tfEmailProf.setText("");
+		tfTelefonoProf.setText("");
 	}
 
-    @FXML
+
+	@FXML
     void anadirProfesor(ActionEvent event) {
-    	Profesor profesor=null;
     	try {
+        	Profesor profesor=null;
     		profesor=crearProfesor();
-    		controladorMVC.insertarProfesor(profesor);
+    		controlador.insertarProfesor(profesor);
 			cVentanaPrincipal.actualizaTablas();
 			Stage propietario = ((Stage) btnAceptar.getScene().getWindow());
 			Dialogos.mostrarDialogoInformacion("Añadir Profesor", "Profesor añadido correctamente", propietario);
@@ -53,46 +58,14 @@ public class ControladorAnadirProfesor {
 		}
     
     }
+	
+	
 
     @FXML
     void Cancelar(ActionEvent event) {
     	((Stage) btnCancelar.getScene().getWindow()).close();
     }
 
-    private void compruebaNombre (String ov, String nv) {
-		if (nv.matches("[^0-9]*")) {
-			tfNombreProf.setStyle("-fx-border-color: green");
-		} else{
-			tfNombreProf.setText(ov);
-			tfNombreProf.setStyle("-fx-border-color: red");
-		}
-    }
-    
-    private void compruebaApellido (String ov, String nv) {
-		if (nv.matches("[^0-9]*")) {
-			tfApellidosProf.setStyle("-fx-border-color: green");
-		} else{
-			tfApellidosProf.setText(ov);
-			tfApellidosProf.setStyle("-fx-border-color: red");
-		}
-    }
-    
-    private void compruebaEMail (String ov, String nv) {
-		if (nv.matches("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])")) {
-			tfEmailProf.setStyle("-fx-border-color: green");
-		} else{
-			tfEmailProf.setStyle("-fx-border-color: red");
-		}
-    }
-    
-    private void compruebaTelefono (String ov, String nv) {
-		if (nv.matches("([0-9]{9})")) {
-			tfTelefonoProf.setStyle("-fx-border-color: green");
-		} else{
-			// inputTelfProf.setText(ov);
-			tfTelefonoProf.setStyle("-fx-border-color: red");
-		}
-    }
     
     private Profesor crearProfesor() {
     	String nombre=tfNombreProf.getText();
@@ -104,7 +77,4 @@ public class ControladorAnadirProfesor {
     }
     
     
-    @FXML private Button btnAceptar;
-    @FXML private Button btnCancelar;
-    // @FXML private TitledPane vAnadirProf;
 }
