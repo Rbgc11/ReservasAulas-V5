@@ -23,7 +23,7 @@ public class Controlador implements IControlador{
 		}
 		
 		if (vista == null) {
-			throw new NullPointerException(" La vista no puede ser nula.");
+			throw new NullPointerException("La vista no puede ser nula.");
 		}
 		
 		this.Imodelo = modelo;
