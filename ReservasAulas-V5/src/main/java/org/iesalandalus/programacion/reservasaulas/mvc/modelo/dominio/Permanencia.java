@@ -15,7 +15,7 @@ public abstract class Permanencia implements Serializable {
 
     public Permanencia(Permanencia permanencia){        
         if(permanencia==null){       
-            throw new NullPointerException("No se puede copiar una permanencia nula.");                
+            throw new NullPointerException("ERROR: No se puede copiar una permanencia nula.");                
         }else{          
         	setDia(permanencia.getDia());
         }

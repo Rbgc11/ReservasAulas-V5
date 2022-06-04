@@ -20,7 +20,7 @@ public class Aula implements Serializable {
     public Aula(Aula aula) {
         {
             if (aula == null) {
-    			throw new NullPointerException("No se puede copiar un aula nula.");
+    			throw new NullPointerException("ERROR: No se puede copiar un aula nula.");
     		}
     		setNombre(aula.nombre);
     		setPuestos(aula.puestos);
@@ -29,9 +29,9 @@ public class Aula implements Serializable {
     
 	private void setNombre(String nombre) {
 		if(nombre==null) {
-			throw new NullPointerException("El nombre del aula no puede ser nulo.");
+			throw new NullPointerException("ERROR: El nombre del aula no puede ser nulo.");
 		}else if (nombre.trim().equals("")) {
-			throw new IllegalArgumentException("El nombre del aula no puede estar vacío.");
+			throw new IllegalArgumentException("ERROR: El nombre del aula no puede estar vacío.");
 		} else {
 		this.nombre = nombre;
 		}
@@ -45,7 +45,7 @@ public class Aula implements Serializable {
 	//Set Puestos
 	private void setPuestos(int puestos) {
 		if (puestos > MAX_PUESTOS || puestos < MIN_PUESTOS) {
-			throw new IllegalArgumentException ("El puesto no es correcto, debe de ser entre 10 y 100 .");
+			throw new IllegalArgumentException ("ERROR: El puesto no es correcto, debe de ser entre 10 y 100 .");
 		} else {
 			this.puestos = puestos;
 		}
@@ -62,7 +62,7 @@ public class Aula implements Serializable {
     }
     
 	public static Aula getAulaFicticia(String aula){		
-		Aula aulafic = new Aula("DAW", 20);
+		Aula aulafic = new Aula(aula, 20);
 		return new Aula(aulafic);
 	}
 
@@ -76,7 +76,9 @@ public class Aula implements Serializable {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!(obj instanceof Aula))
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
 			return false;
 		Aula other = (Aula) obj;
 		return Objects.equals(nombre, other.nombre);
@@ -84,8 +86,9 @@ public class Aula implements Serializable {
 
 	@Override
 	public String toString() {
-		return "nombre=" + getNombre() + ", puestos=" + getPuestos();
+		return "nombre=" + nombre + ", puestos=" + puestos;
 	}
+	
 	
 
 }
